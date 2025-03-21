@@ -406,6 +406,7 @@ if [ ${MODE} = "benchmark_train" ]; then
             sed -i "$line d" $gpu_config_value
         fi
         #执行训练脚本
+        rm -rf ${graph_working_root}
         sh -x tools/run_pglbox.sh
         if [[ ${SYS_JOB_NAME} && ${SYS_JOB_NAME} =~ 'CE' ]]; then
             sh tools/run_graph_eval.sh $gpu_config_value > ${BENCHMARK_LOG_DIR}/graph_eval.log 2>&1
